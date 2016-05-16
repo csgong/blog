@@ -1,7 +1,7 @@
 # 学习笔记
 
 ## JavaScript
-* [Javascript权威指南读书笔记-前言](http://jekyll.bootcss.com/)
+* [Javascript权威指南读书笔记-前言](test.md)
 * [Javascript权威指南读书笔记-运算符](http://jekyll.bootcss.com/)
 * [Javascript权威指南读书笔记-算数运算](http://jekyll.bootcss.com/)
 * [Javascript权威指南读书笔记-delete](http://jekyll.bootcss.com/)
