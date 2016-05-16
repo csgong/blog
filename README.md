@@ -1,2 +1,5 @@
 # 学习笔记
-## javascript
+## JavaScript
+* JavaScript01
+* JavaScript02
+* JavaScript03
