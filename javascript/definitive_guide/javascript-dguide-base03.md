@@ -1,9 +1,4 @@
----
-title: Javascript权威指南读书笔记-delete
-date: 2016-03-21 13:40:30
-tags: Javascript权威指南
-categories: javascript
----
+# Javascript权威指南读书笔记-delete
 ## 详解delete运算符
 之所以把delete运算符单独拿出来，是因为它的知识点很多，而且容易被忽视
 

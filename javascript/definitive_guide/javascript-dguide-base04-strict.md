@@ -1,9 +1,4 @@
----
-title: Javascript权威指南读书笔记-严格模式与非严格模式的区别
-date: 2016-03-22 17:53:39
-tags: Javascript权威指南
-categories: javascript
----
+# Javascript权威指南读书笔记-严格模式与非严格模式的区别
 ## 1."user strict"是什么
 
 严格模式`"user strict"`是ECMAScript 5引入的一条指令，他出现在脚本的开始或者函数体的开始、任何实体语句之前，使用`"user strict`表明其后续的代码将采用严格模式执行，严格模式下，Javascript 语言受到了一定的限制，修正了一些缺陷，此时语言正健壮，更安全

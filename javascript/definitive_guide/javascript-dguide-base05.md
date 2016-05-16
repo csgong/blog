@@ -1,12 +1,7 @@
----
-title: Javascript权威指南读书笔记-对象
-date: 2016-03-23 10:01:41
-tags: Javascript权威指南
-categories: javascript
----
+# Javascript权威指南读书笔记-对象
 ![知识点](http://7xrv9g.com1.z0.glb.clouddn.com/Object.png)
 ## 关于对象
-***
+
 对象是基本的数据类型，它是属性的无序集合，除了包含属性，对象还拥有三个相关的特性。
 * 原型（prototype）对象
 本身属性继承自原型对象。
@@ -16,7 +11,7 @@ categories: javascript
 指明了是否可以添加新属性。
 <!-- more --> 
 ## 对象属性特征
-***
+
 属性除了名字和值外，还包含三个特性
 * 可写（writable）
     是否可以设置属性值。
@@ -26,7 +21,7 @@ categories: javascript
     是否可删除和修改属性。
 
 ## 创建对象
-***
+
 创建对象主要有如下三种方法
 * 对象直接量
 对象直接量就是直接使用{}创建对象,也是用的最多的方法，简单、直接。
@@ -53,7 +48,7 @@ obj.toString();  =>Uncaught TypeError: obj.toString is not a function 不存在�
 ```
 对于第二个参数，后面会补充，这里先略过。
 ## 原型
-***
+
 * 每一个对象（除了null）都是从原型继承属性，使用对象直接量和构造函数创建对象原型就是构造函数的prototype，例如{}和new Object() 的原型对象为Object.prototype,同理 使用[]和new Array()创建的对象原型自然就是Array.prototype。
 * 只有Object.prototype没有原型，所有内置的构造函数继承自Object.prototype，例如Array.prototype属性就继承自Object.prototype，这一些列的链接原型对象就是所谓的·**原型链**。
 
@@ -88,7 +83,7 @@ obj2.att2 =>200 //原型属性被自身属性覆盖
 ```
 设置属性每次都会先检查原型链，以此来判断是否允许赋值操作，例如原型对象属性att1是只读的，那么给obj2的att1赋值操作是不允许的
 ## 检测属性
-***
+
 有时候，我们需要象判断对象是否拥有某个属性，可以通过 in 运算符、hasOwnProperty()和propertyIsEnumerable()方法来完成，甚至通过属性访问也可以间接的做到。
 * in 运算符
 in 运算符可以检测自身和继承的属性，存在返回true。
@@ -132,7 +127,7 @@ for(var p in obj) {
 push.toString(); =>"a,b,d" 
 ```
 ## 枚举属性
-***
+
 枚举属性的话可以使用`for/in`,ECMAScript 5新增的`Object.keys()`以及`Object.getOwnPropertyNames()`。
 * for/in
 for/in可以遍历所有可枚举的自由属性和继承属性。
@@ -159,7 +154,7 @@ Object.keys(obj)  =>["b"]
 Object.getOwnPropertyNames(obj)  =>["a","b"]
 ```
 ## 存取器属性（getter和setter）
-***
+
 * 概念
 ECMASript 5 以后，Javascript属性的值可以通过get 和set存取，此时这个属性就是存取器属性
 * 定义
@@ -184,7 +179,7 @@ gsObj.next =>1
 gsObj.random =>0.27040234516466843
 ```
 ## 属性特性
-***
+
 对象属性有writable、configurable,enumerable,如果把属性的值也算作特性的话，那么属性就有四种特性，E5之前，属性的特性是不可配置的，新增的属性都是可写，可读和可配置的。E5中特性是可以获取和定义的，E5定义了一个**属性描述符(property discriptor**)对象，用来操作特性。
 
 通过`Object.getOwnPropertyDescriptor()`可以获取对象属性的特性，
@@ -235,7 +230,7 @@ var o = Object.create({a:1},{b:null,c:{value:3,writable:true, enumerable:true,co
 Object.getOwnPropertyDescriptor(o,"b")//=>{value: undefined, writable: false, enumerable: false, configurable: false}
 ```
 ## 对象的三个属性
-***
+
 ### 1.原型
 E5中可以通过`Object.getPrototypeOf()`来获取某个对象的原型，但E3没有相应方法，经常使用`Object.contructor.prototype`检测对象的原型。
 创建对象时，都会继承一个contructor属性，用以指代构造函数，contructor.prototype就是对象的原型。
@@ -300,7 +295,7 @@ obj.p //=>1  设置值无效
 Object.isFrozen(obj);   //=>true
 ```
 ## 序列化对象
-***
+
 序列化就是将对象转为字符串和逆向操作的统称，E5提供了相对应的方法来实现以上操作。
 `JSON.stringify()`用以将对象转为字符串，`JSON.parse()`用以将字符串转对象。
 `JSON.stringify()`和，`JSON.parse()`第二个可选参数都是一个转换结果的函数，用以自定义转换结果

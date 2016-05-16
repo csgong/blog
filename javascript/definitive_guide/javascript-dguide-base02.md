@@ -1,9 +1,4 @@
----
-title: Javascript权威指南读书笔记-运算符
-date: 2016-03-21 12:54:33
-tags: Javascript权威指南
-categories: javascript
----
+# Javascript权威指南读书笔记-运算符
 ## 1. in 运算符
 in 用于检测对象是否包含某个属性
 
