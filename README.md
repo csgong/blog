@@ -13,5 +13,5 @@
 
 ## other
 * [Windows下 hexo+github pages 博客搭建](source/other/install-hexo.md)
-* [Chrome 调试技巧](source/other/javascript-debug-chrome.md)
+* [Chrome 调试技巧](./source/other/javascript-debug-chrome.md)
 
