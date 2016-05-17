@@ -1,12 +1,4 @@
----
-title: Windows下 hexo+github pages 博客搭建
-date: 2014-05-07 18:44:12
-tags: 
- - github
- - hexo
- - 博客
-categories: other
----
+# Windows下 hexo+github pages 博客搭建
 ## 1. 前言
 
 一直想搞个自己的博客,但是不知道哪个好，于是google之,看见很多人说[Github Pages](https://pages.github.com/)这个东西，于是顺藤摸瓜，查看到了很多这方便的东西.
