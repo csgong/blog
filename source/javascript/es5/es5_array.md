@@ -11,9 +11,9 @@ typeof arr ==="object" &&
         Object.prototype.toString.call(arr)==="[object Array]"
 ```
 ### indexOf()和lastIndexOf()
-indexOf和lastIndexOf搜索整个数组查找给定的元素是否在数组中，方法返回找到的第一个元素的索引值，没有找到、参数为空、不传参数和数组为空的情况下都返回-1。
+`indexOf`和`lastIndexOf`搜索整个数组查找给定的元素是否在数组中，查找时使用全等(===)进行匹配，方法返回找到的第一个元素的索引值，没有找到、参数为空、不传参数和数组为空的情况下都返回-1。
 方法第二个参数是可选的，它指定数组开始开始查找的索引。第二个参数也可以是负数，表示相对数组最后一个元素的偏移量。
-与indexOf不同，lastIndexOf反向搜索。字符串也有相同方法，用法类似。
+与`indexOf`不同，`lastIndexOf`反向搜索。字符串也有相同方法，用法类似。
 
 ```javascript
 var arr = [4,5,6];
@@ -23,8 +23,9 @@ arr.indexOf();    //=>-1
 arr.indexOf(6,2); //=>2
 arr.indexOf(6,-1); //=>2
 ```
+
 ### foreach()
-foreach方法用于遍历数组，为每个元素调用指定的函数，这个函数就是第一个参数，foreach调用该函数时会传递三个参数，依次是数组元素、索引和数组本身。foreach无法使用return和break跳出循环，只能使用抛出异常这种方式结束循环。
+`foreach`方法用于遍历数组，为每个元素调用指定的函数，这个函数就是第一个参数，foreach调用该函数时会传递三个参数，依次是数组元素、索引和数组本身。foreach无法使用return和break跳出循环，只能使用抛出异常这种方式结束循环。
 
 ```javascript
 function iterateArr(){
@@ -43,7 +44,7 @@ iterateArr.stopErr = new Error("StopIteration");
 iterateArr(); //=>数组4,5,6第0个元素的值为：4
 ```
 ### map()
-map方法同foreach，区别是方法返回新的数组，新的数组是由参数函数返回值组成的，map方法不改变原数组。
+`map`方法同`foreach`，区别是方法返回新的数组，新的数组是由参数函数返回值组成的，map方法不改变原数组。
 
 ```javascript
 var arr = [4,5,6];
@@ -53,7 +54,7 @@ arr.map(function(v,i,a){
 arr//=>[4,5,6]  原数组不变
 ```
 ### filter()
-filter方法调用方式和map方法一样，该方法用于返回原数组的子集，返回的子集数组是由参数函数的返回值决定的，如果函数返回可以转为true的值，那么当前元素将会被添加到返回数组中。**filter方法可以跳过稀疏数组缺失的元素，可以用来压缩数组**。
+`filter`方法调用方式和map方法一样，该方法用于返回原数组的子集，返回的子集数组是由参数函数的返回值决定的，如果函数返回可以转为true的值，那么当前元素将会被添加到返回数组中。**filter方法可以跳过稀疏数组缺失的元素，可以用来压缩数组**。
 
 ```javascript
 var arr = [4,5,,6];
@@ -90,7 +91,7 @@ arr.reduceRight(function(s,v,i,a){
 ```
 使用reduce和reduceRight需要注意以下几点：
 
-  1. 如果没有设置初始值，那么第一个参数就是数组的第一个元素，第二个参数就自然使用数组的第二个元素
+* 如果没有设置初始值，那么第一个参数就是数组的第一个元素，第二个参数就自然使用数组的第二个元素
 
 ```javascript
 var arr = [4,5];
@@ -99,7 +100,7 @@ console.log("参数1是"+s+",参数2是"+v);
     return s+v;
 });  //=>9 控制台打印 “参数1是4,参数2是5”
 ```
-  2. 如果数组为空时，调用reduce和reduceRight将抛出TypeError
+* 如果数组为空时，调用reduce和reduceRight将抛出TypeError
 
 ```javascript
 var arr = [];
@@ -107,7 +108,7 @@ arr.reduce(function(s,v,i,a){
     return s;
 });  //=> TypeError: Reduce of empty array with no initial value
 ```
-  3. 如果数组只有一个元素，则直接返回这个元素，不会执行合并函数
+* 如果数组只有一个元素，则直接返回这个元素，不会执行合并函数
 
 ```javascript
 var arr = [1];
