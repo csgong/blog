@@ -23,7 +23,7 @@ ES5通过对现有JavaScript方法添加语句和原生ECMAScript对象做合并
 
 ### 6. Function对象添加了bind()方法
 
-### 7. ES5新增了属性描述属性enumerable、configurable、writable、get、set
+### 7. ES5新增了属性描述特性enumerable、configurable、writable、get、set
 
 ### 8. Object对象
 * 继承相关方法：create()、getPrototypeOf() 

@@ -1,87 +1,15 @@
-# Javascript权威指南读书笔记-对象
-![知识点](http://7xrv9g.com1.z0.glb.clouddn.com/Object.png)
-## 关于对象
-
-对象是基本的数据类型，它是属性的无序集合，除了包含属性，对象还拥有三个相关的特性。
-* 原型（prototype）对象
-本身属性继承自原型对象。
-* 对象的类
-标识对象类型的字符串。
-* 扩展标记
-指明了是否可以添加新属性。
-<!-- more --> 
-## 对象属性特征
-
-属性除了名字和值外，还包含三个特性
-* 可写（writable）
-    是否可以设置属性值。
-* 可枚举（enumerable）
-    是否可以使用`for/in`循环返回该属性。
-* 可配置（configurable）
-    是否可删除和修改属性。
-
+# 对象新特性
+    
 ## 创建对象
-
-创建对象主要有如下三种方法
-* 对象直接量
-对象直接量就是直接使用{}创建对象,也是用的最多的方法，简单、直接。
-
-```javascript
-var obj = {a:1,b:2,c:2+1};
-```
-* 通过new 创建
-这种方法就是调用构造函数创建对象，javascript原始类型都有构造函数。
-
-```javascript
-var obj = new Object(); //创建空对象 等价于{}
-var strObj = new Object("a"); //创建一个字符串对像，等价于new String("a");
-var numObj = new Object(1);//创建一个字符串对像，等价于new Number(1);
-```
-* Object.create()
 Object.create 是ECMAScript 5新增的方法，用来创建对象，方法有两个参数，第一个为对象的原型，第二个为属性的特性描述，如果第一个参数为`null`，那么新创建的对象不继承任何东西，自然也就不会有`Object.prototype`中的基础方法，而前两种方法默认都继承自`Object.prototype`。
 
 ```javascript
-var obj = Object.create(Object.prototype);//创建一个空对象，等价于前两种方法
+var obj = Object.create(Object.prototype);//创建一个空对象
 obj.toString();  =>"[object Object]"  //继承了Object.prototype
 var obj = Object.create(); //创建了无任何继承的空对象
 obj.toString();  =>Uncaught TypeError: obj.toString is not a function 不存在该方法
 ```
-对于第二个参数，后面会补充，这里先略过。
-## 原型
-
-* 每一个对象（除了null）都是从原型继承属性，使用对象直接量和构造函数创建对象原型就是构造函数的prototype，例如{}和new Object() 的原型对象为Object.prototype,同理 使用[]和new Array()创建的对象原型自然就是Array.prototype。
-* 只有Object.prototype没有原型，所有内置的构造函数继承自Object.prototype，例如Array.prototype属性就继承自Object.prototype，这一些列的链接原型对象就是所谓的·**原型链**。
-
-## 读取和设置属性
----
-可以通过`.`和`[]`读取和设置属性,`[]`里面可以是表达式，这种方式更加灵活。
-
-```javascript
-var obj = {att1:1,att2:2,att3:3};
-obj.att1    =>1  //属性存在
-obj.att8    =>undefined  //属性不存在
-for(var i=1;i<4;i++) {
-    obj["att"+i]    //灵活读取属性
-}
-```
-如果要访问的属性不存本对象中，则会继续在其原型对象上查找
-```javascript
-var obj = {att1:1,att2:2,att3:3};
-var obj2 = Object.create(obj);
-obj2.att1    =>1  //属性在原型对象上，成功返回
-```
-设置属性时，如果属性不存在，则会创建属性，同名属性会被覆盖，原型链上的属性也会被自身属性覆盖，另外属性操作不会去修改原型链
-```javascript
-var obj = {att1:1,att2:2,att3:3};
-obj.att1 = 100; 
-obj.att4 = 400; 
-obj.att1   =>100 //同名属性被覆盖
-obj.att4   =>400 //创建了属性
-var obj2 = Object.create(obj);
-obj2.att2 = 200;
-obj2.att2 =>200 //原型属性被自身属性覆盖
-```
-设置属性每次都会先检查原型链，以此来判断是否允许赋值操作，例如原型对象属性att1是只读的，那么给obj2的att1赋值操作是不允许的
+    
 ## 检测属性
 
 有时候，我们需要象判断对象是否拥有某个属性，可以通过 in 运算符、hasOwnProperty()和propertyIsEnumerable()方法来完成，甚至通过属性访问也可以间接的做到。
@@ -118,19 +46,20 @@ var obj = {a:1,b:false,c:undefined,d:0,e:null},result = [];
 for(var p in obj) {
     if(obj[p]) result.push(p);
 }
-push.toString(); =>"a" 
+result.toString(); =>"a" 
 //检测非空属性
 result = [];
 for(var p in obj) {
     if(obj[p] != null) result.push(p);
 }
-push.toString(); =>"a,b,d" 
+result.toString(); =>"a,b,d" 
 ```
 ## 枚举属性
 
 枚举属性的话可以使用`for/in`,ECMAScript 5新增的`Object.keys()`以及`Object.getOwnPropertyNames()`。
+
 * for/in
-for/in可以遍历所有可枚举的自由属性和继承属性。
+for/in可以遍历所有可枚举的自有属性和继承属性。
 
 ```javascript
 var obj = Object.create({p1:1,p2:2});
@@ -142,6 +71,7 @@ for(var p in obj){
 从以上例子可以看出：
 **`for/in`先查找自有属性，然后是原型**
 **内置对象的属性是不可枚举的**
+
 * Object.keys()和Object.getOwnPropertyNames()
 `Object.keys()`返回所有可枚举的自有属性，而`getOwnPropertyNames()`则是所有属性，包括不可枚举属性
 
@@ -179,8 +109,16 @@ gsObj.next =>1
 gsObj.random =>0.27040234516466843
 ```
 ## 属性特性
+属性除了值和名字外，还包含writable、configurable,enumerable
 
-对象属性有writable、configurable,enumerable,如果把属性的值也算作特性的话，那么属性就有四种特性，E5之前，属性的特性是不可配置的，新增的属性都是可写，可读和可配置的。E5中特性是可以获取和定义的，E5定义了一个**属性描述符(property discriptor**)对象，用来操作特性。
+* 可写（writable）
+    是否可以设置属性值。
+* 可枚举（enumerable）
+    是否可以使用`for/in`循环返回该属性。
+* 可配置（configurable）
+    是否可删除和修改属性。
+
+如果把属性的值也算作特性的话，那么属性就有四种特性，E5之前，属性的特性是不可配置的，新增的属性都是可写，可读和可配置的。E5中特性是可以获取和定义的，E5定义了一个**属性描述符(property discriptor**)对象，用来操作特性。
 
 通过`Object.getOwnPropertyDescriptor()`可以获取对象属性的特性，
 `Object.getOwnPropertyDescriptor()`只能获取自有属性的描述对象，要想获取继承属性的特性，需要遍历原型链
@@ -228,7 +166,8 @@ Object.defineProperty(obj,"a",{get:function(){return  1;},configurable:true,enum
 ```javascript
 var o = Object.create({a:1},{b:null,c:{value:3,writable:true, enumerable:true,configurable:true}});
 Object.getOwnPropertyDescriptor(o,"b")//=>{value: undefined, writable: false, enumerable: false, configurable: false}
-```
+```    
+
 ## 对象的三个属性
 
 ### 1.原型
@@ -262,6 +201,7 @@ Object.prototype.toString.call(1); //=>"[object Number]"
 ### 3.可扩展
 对象的可扩展性用以表示是否可以给对象添加属性，E5中，所有的内置对象和自定义对象默认都是可扩展的。
 E5定义了设置和查询扩展性的方法，`Object.isExtensible()`用以查询对象是否可扩展,`Object.preventExtensions()`用以将对象设为不可扩展，该方法有两点需要注意：
+
 * **方法不可逆，一旦设置，将无法更更改**
 * **方法只影响本身，不影影响原型**
 
@@ -297,7 +237,11 @@ Object.isFrozen(obj);   //=>true
 ## 序列化对象
 
 序列化就是将对象转为字符串和逆向操作的统称，E5提供了相对应的方法来实现以上操作。
-`JSON.stringify()`用以将对象转为字符串，`JSON.parse()`用以将字符串转对象。
+
+* `JSON.stringify(value[, replacer [, space]])`
+用以将对象转为字符串，不可枚举的属性将被忽略
+replacer:如果该参数是一个函数，则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理；如果该参数是一个数组，则只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中。
+space :指定缩进用的空白字符串，用于美化输出（pretty-print）。
 `JSON.stringify()`和，`JSON.parse()`第二个可选参数都是一个转换结果的函数，用以自定义转换结果
 **函数，RegExp、Error和undefined是不能被序列化的**，日期对象序列化的结果是ISO格式的字符串，但parse却不会将其还原为日期，仍然保留字符串形态
 
@@ -307,4 +251,49 @@ var jsonStr = JSON.stringify(obj)
 //结果为："{"p":1,"reg":{},"err":{},"d":"2016-03-28T13:52:02.507Z"}"
 JSON.parse(jsonStr);  
 //结果为：Object {p: 1, reg: Object, err: Object, d: "2016-03-28T13:52:02.507Z"}
+```
+如果第二个参数是数组，那么只转换数组里面的属性
+```javascript
+var obj = {a:1,b:2,c:3};
+var jsonStr = JSON.stringify(obj,["a"]) 
+console.log(jsonStr); //=>{"a":1}
+```
+`JSON.stringify()`在序列化时，调用的是相应对象的toJSON方法，如果想自定义序列化结果，可以定义此方法
+```javascript
+var obj = {
+    a:1,
+    b:2,
+    c:3,
+    toJSON:function(){
+        return "{\"cusAttr\":1}";
+    }
+};
+var jsonStr = JSON.stringify(obj) ;
+console.log(jsonStr); //=>"{\"cusAttr\":1}"
+```
+space 参数用来控制结果字符串里面的间距。如果是一个数字, 则在字符串化时每一级别会比上一级别缩进多这个数字值的空格（最多10个空格）；
+```javascript
+JSON.stringify({ a: 2 }, null, "\n");
+//=> "{
+   
+   "a": 2
+   }"
+
+```
+* `JSON.parse(text[, reviver])`
+用以将字符串转对象。
+reviver 一个函数，用来转换解析出的属性值
+如果指定了 reviver 函数，则解析出的 JavaScript 值（解析值）会经过一次转换后才将被最终返回（返回值）。
+更具体点讲就是：解析值本身以及它所包含的所有属性，会按照一定的顺序（从最最里层的属性开始，一级级往外，最终到达顶层，也就是解析值本身）分别的去调用 reviver 函数，在调用过程中，当前属性所属的对象会作为 this 值，当前属性名和属性值会分别作为第一个和第二个参数传入 reviver 中。
+如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。
+```javascript
+JSON.parse('{"p": 5}', function (k, v) {
+    if(k === '') return v;     // 如果到了最顶层，则直接返回属性值，
+    return v * 2;              // 否则将属性值变为原来的 2 倍。
+});                            // { p: 10 }
+
+JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function (k, v) {
+    console.log(k); // 1 2 4 6 5 3
+    return v; 
+});
 ```

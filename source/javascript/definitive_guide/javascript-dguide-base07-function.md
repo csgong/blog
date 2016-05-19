@@ -279,9 +279,11 @@ constructFun()(); //=>"global" 读取不到局部作用域
 在一些函数中，可以将上次的计算结果缓存下来，达到一种函数记忆功能。
 ```javascript
 function memorize(f){
-    var cache = {};
-    var key = arguments.length+Array.prototype.join.call(arguments,"-");
-    if(cache[key]) return cache[key];
-    return cache[key] = f.apply(this,arguments);
+  var cache = {};
+  return function(){
+      var key = arguments.length+Array.prototype.join.call(arguments,"-");
+      if(cache[key]) return cache[key];
+      return cache[key] = f.apply(this,arguments);
+  }
 }
 ```
