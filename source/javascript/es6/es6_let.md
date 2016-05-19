@@ -43,7 +43,7 @@ var varv = 1;
 var v = "global";
 
 function f(){
-  console.log(tmp);
+  console.log();
   if (false){
     var v = "hello world";
   }
@@ -88,7 +88,7 @@ function f() {
 ## window全局变量属性
 在客户端es5中，在全局使用var声明的变量会成为window的一个属性，而es6中使用let则不会。
 ```javascript
-var varv = "1";
+var varv = "1";v
 let letv = "2";
 console.log(window.varv);  //=>1
 console.log(window.letv);  //=>undefined
