@@ -77,7 +77,7 @@ arr.some(function(v,i,a){
     return v>5;
 });=>true  存在6大于5
 ```
-### reduce()reduceRight()
+### reduce(),reduceRight()
 reduce和reduceRight用指定函数将数组合并成一个值，他们需要两个参数，一个是执行合并的函数，另一个就是初始值。reduce和reduceRight同以上的函数调用不用，调用传递的函数的参数将变为到目前为止的合并结果、数组元素、数组索引和数组。reduceRight和reduce一样，区别就是reduceRight按照数组索引从高到底处理数组。
 
 ```javascript

@@ -41,7 +41,7 @@ function strictFun(){
   console.log(this);
 }
 function nostrictFun(){
-   console.log(this);
+   console.log(this);打开
 }
 strictFun.call();      =>undefined
 nostrictFun.call();    =>Window object
