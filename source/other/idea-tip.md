@@ -9,12 +9,12 @@ Editor->General->Auto Import->`Add unambiguous import on the fly`.
 
 After enable above setting,you can import all packages when using hot key `alt+enter`
 
-### optimize packages
+### Optimize packages
 Editor->General->Auto Import->`Optimize import on the fly`.
 
 After enable above setting,when you delete some codes ,import statements brought by those codes will be removed automatically.
 
-### avoid  import *
+### Avoid  import *
 Editor->Code Style->Java->`Class count to user import with *`.
 
 You can set a number which is suitable for you.
