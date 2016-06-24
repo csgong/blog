@@ -12,7 +12,7 @@ After enable above setting,you can import all packages when using hot key `alt+e
 ### optimize packages
 Editor->General->Auto Import->`Optimize import on the fly`.
 
-After enable above setting,when you delete some codes ,the import statements bring by those codes can be removed automatically.
+After enable above setting,when you delete some codes ,import statements brought by those codes will be removed automatically.
 
 ### avoid  import *
 Editor->Code Style->Java->`Class count to user import with *`.
