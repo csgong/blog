@@ -12,3 +12,6 @@ But, if the button element has't content(i mean it's calculated width is 0) and 
 has been initialized,input can't cover above this button.
 
 Therefore,in order to solve this bug you should set the button's content before plugin has been initialized.
+
+## 1. AutoSelect can't be activated when clicking icon
+Label should set "for" attribute for input.
