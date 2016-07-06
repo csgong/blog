@@ -13,5 +13,5 @@ has been initialized,input can't cover above this button.
 
 Therefore,in order to solve this bug you should set the button's content before plugin has been initialized.
 
-## 1. AutoSelect can't be activated when clicking icon
+## 3. AutoSelect can't be activated when clicking icon
 Label should set "for" attribute for input.
