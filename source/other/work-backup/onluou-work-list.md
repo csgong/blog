@@ -15,3 +15,7 @@ Therefore,in order to solve this bug you should set the button's content before 
 
 ## 3. AutoSelect can't be activated when clicking icon
 Label should set "for" attribute for input.
+
+## 4. IE doesn't support to generate a date using `new Date("")` format. eg. new Date("2015/1/1")
+For IE,you can use `new Date(2015,1,1)` or date.setUTCFullYear(2105,1,1) and date.setUTCHours(0, 0, 0, 0) as same; 
+                                           
