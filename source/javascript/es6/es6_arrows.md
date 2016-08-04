@@ -1,7 +1,7 @@
 # Arrows
 Arrows are a function shorthand using the => syntax.
 It supports both statement block bodies as well as expression bodies which return the value of the expression.
-Unlike functions, arrows share the same lexical(does not bind its own this, arguments, super, or new.target) `this` as their surrounding code. 
+Unlike functions, arrows share the same lexical(does not bind its own `this`, `arguments`, `super`, or `new.target`) `this` as their surrounding code. 
 These function expressions are best suited for non-method functions and they can not be used as constructors.
 Arrow functions are always anonymous.
 
