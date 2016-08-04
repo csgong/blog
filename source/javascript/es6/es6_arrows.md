@@ -26,7 +26,7 @@ let f = () => 5;
 ```javascript
 //函数体是多语句，需要使用大括号将函数体括起来，就像正常函数体一样。
 let f = () =>{
-        Statements...
+    Statements...
 };
 ```
 * 函数没有`this`,使用定义时的上下文。
