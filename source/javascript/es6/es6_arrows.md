@@ -29,7 +29,7 @@ let f = () =>{
     Statements...
 };
 ```
-* 函数没有`this`,使用定义时的上下文。
+* 函数没有`this`,使用定义时的`this`。
 ```javascript
 // 作用域 this
 var bob = {
