@@ -32,7 +32,7 @@ let f = () =>{
 * 函数没有`this`,使用定义时的`this`。
 ```javascript
 // 作用域 this
-var bob = {
+let bob = {
     _name: 'Bob',
     _friends: ['Amy'],
     printFriends() {
