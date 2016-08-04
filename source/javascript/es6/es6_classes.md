@@ -17,6 +17,7 @@ class Polygon {
 }
 ```
 * Hoisting
+
 An important difference between function declarations and class declarations is that function declarations are hoisted and class declarations are not. 
 You first need to declare your class and then access it, otherwise code like the following will throw a ReferenceError:
 ```javascript
@@ -24,6 +25,7 @@ var p = new Polygon(); // ReferenceError
 class Polygon {}
 ```
 * Class expressions
+
 A class expression is another way to define a class. Class expressions can be named or unnamed. 
 The name given to a named class expression is local to the class's body.
 ```javascript
@@ -63,8 +65,10 @@ person.sayName(); // =>"张三"
 ```
 ## Class body and method definitions
 * Strict mode
+
 The bodies of class declarations and class expressions are executed in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
 * Constructor
+
 The constructor method is a special method for creating and initializing an object created with a class. 
 There can only be one special method with the name "constructor" in a class. 
 A SyntaxError will be thrown if the class contains more than one occurrence of a constructor method.
@@ -78,6 +82,7 @@ class Point {
 }
 ```
 * Static methods
+
 The static keyword defines a static method for a class. 
 Static methods are called without instantiating their class and are also not callable when the class is instantiated. 
 Static methods are often used to create utility functions for an application.
