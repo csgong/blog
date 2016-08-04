@@ -129,9 +129,12 @@ class Foo { }
 class Bar extends CalculatorMixin(RandomizerMixin(Foo)) { }
 ```
 
-# More info
+# Additional resources
 
-* [MDN Classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
-* [es6katas#Class](http://es6katas.org/)
-* [es6.ruanyifeng#class](http://es6.ruanyifeng.com/#docs/class)
-* [lukehoban#classes](https://github.com/lukehoban/es6features#classes)
+>[MDN Classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)--Mainly referenced
+
+>[es6katas#Class](http://es6katas.org/)
+
+>[es6.ruanyifeng#class](http://es6.ruanyifeng.com/#docs/class)
+
+>[lukehoban#classes](https://github.com/lukehoban/es6features#classes)

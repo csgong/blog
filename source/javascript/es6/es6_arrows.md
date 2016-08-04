@@ -47,7 +47,8 @@ var obj = {
 obj.b(); // prints undefined, Window
 obj.c(); // prints 10, Object {...}
 ```
-# References
+# Additional resources
+
 >[MDN Arrow_functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)--Mainly referenced
 
 >[es6katas#Arrow functions](http://es6katas.org/)
