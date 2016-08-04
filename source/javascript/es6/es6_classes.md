@@ -1,13 +1,16 @@
 # Classes
+
 JavaScript classes are introduced in ECMAScript 6 and are syntactical sugar over JavaScript's existing prototype-based inheritance.
 The class syntax is not introducing a new object-oriented inheritance model to JavaScript.
 JavaScript classes provide a much simpler and clearer syntax to create objects and deal with inheritance.
 
 ## Defining classes 
+
 Classes are in fact "special functions", and just as you can define function expressions and function declarations, 
 the class syntax has two components: class expressions and class declarations.
 
 * Class declarations
+
 ```javascript
 class Polygon {
     constructor(height, width) {
@@ -64,9 +67,11 @@ let person = new class {
 person.sayName(); // =>"张三"
 ```
 ## Class body and method definitions
+
 * Strict mode
 
 The bodies of class declarations and class expressions are executed in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
+
 * Constructor
 
 The constructor method is a special method for creating and initializing an object created with a class. 
@@ -81,6 +86,7 @@ class Point {
   }
 }
 ```
+
 * Static methods
 
 The static keyword defines a static method for a class. 
@@ -94,7 +100,9 @@ class Point {
 }
 console.log(Point.distance(1,2)) //=> 3;
 ```
+
 * Sub classing with extends
+
 ```javascript
 class ColorPoint extends Point {
   constructor(x, y, color) {
@@ -106,7 +114,9 @@ class ColorPoint extends Point {
   }
 }
 ```
+
 ## Mix-ins
+
 Abstract subclasses or mix-ins are templates for classes. An ECMAScript class can only have a single superclass, 
 so multiple inheritance from tooling classes, for example, is not possible. 
 The functionality must be provided by the superclass.
@@ -118,7 +128,9 @@ var RandomizerMixin = Base => class extends Base {
 class Foo { }
 class Bar extends CalculatorMixin(RandomizerMixin(Foo)) { }
 ```
+
 # More info
+
 * [MDN Classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 * [es6katas#Class](http://es6katas.org/)
 * [es6.ruanyifeng#class](http://es6.ruanyifeng.com/#docs/class)
