@@ -1,13 +1,9 @@
 # Arrows
 Arrows are a function shorthand using the => syntax.
-
 It supports both statement block bodies as well as expression bodies which return the value of the expression.
-
-Unlike functions, arrows share the same lexical `this` as their surrounding code.  
-
-It can not bind a different context
-
-`arguments` doesn't work inside arrow functions'
+Unlike functions, arrows share the same lexical(does not bind its own this, arguments, super, or new.target) `this` as their surrounding code. 
+These function expressions are best suited for non-method functions and they can not be used as constructors.
+Arrow functions are always anonymous.
 
 # Examples
 * Expression bodies
@@ -40,8 +36,19 @@ let bob = {
             console.log(this._name  + ' known ' + f));
     }    
 }; // => Bob known Amy
+'use strict';
+var obj = {
+  i: 10,
+  b: () => console.log(this.i, this),
+  c: function() {
+    console.log( this.i, this)
+  }
+}
+obj.b(); // prints undefined, Window
+obj.c(); // prints 10, Object {...}
 ```
 # More info
+* [MDN Arrow_functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 * [es6katas#Arrow functions](http://es6katas.org/)
 * [es6.ruanyifeng#箭头函数](http://es6.ruanyifeng.com/#docs/function#箭头函数)
 * [lukehoban#arrows](https://github.com/lukehoban/es6features#arrows)
