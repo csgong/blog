@@ -49,6 +49,12 @@ obj.c(); // prints 10, Object {...}
 ```
 # References
 >[MDN Arrow_functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)--Mainly referenced
+
+
 >[es6katas#Arrow functions](http://es6katas.org/)
+
+
 >[es6.ruanyifeng#箭头函数](http://es6.ruanyifeng.com/#docs/function#箭头函数)
+
+
 >[lukehoban#arrows](https://github.com/lukehoban/es6features#arrows)
