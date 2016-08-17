@@ -21,18 +21,27 @@ You can set a number which is suitable for you.
 
 ## Hot keys
 
-### ctrl +shift + k
+All hot keys are defined on the keymaps of Eclipse which you can set it by **`Settings->Keymap`**.
 
-Push changes to remote git repository.
+### Ctrl + Shift + k
+
+Push changes to git remote repository.
 
 It is equivalent to **`right-mouse->git->repository->push`**.
 
-### alt +shift + r
+### Alt + Shift + r
 
 do rename operation.
 
 It is equivalent to **`right-mouse->refactor->rename`**.
 
+### Ctrl + g
 
+Finding all places where a particular class, method or variable is used in the whole project,
+but different with `Ctrl + Alt + F7`,it show you the same information in a tool window at the bottom that will stay there.
+will 
 
+### Ctrl + Alt + F7
 
+Finding all places where a particular class, method or variable is used in the whole project,
+it gives you a nice popup with good interaction.
