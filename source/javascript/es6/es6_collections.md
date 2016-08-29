@@ -26,13 +26,11 @@ But there are as many differences between sets and arrays as there are similarit
 
 * First, unlike an array, a set never contains the same value twice. If you try to add a value to a set that’s already in there, nothing happens.
 The value equality will be checked and is not based on the same algorithm as the one used in the === operator. Specifically, `NaN` is considered the same as `NaN`.
- 
 ```javascript
 let desserts = new Set("abcd");
 desserts.size //=>4 
 ```
 * Second, a Set keeps its data organized to make one particular operation fast: membership testing.
-
 ```javascript
 // Check whether "a" is exist.
 let arr = ["b","a"];
@@ -67,12 +65,11 @@ returns a new iterator over the values in the set. You won’t normally call thi
 It means you can write for (v of set) {...} and so on.
 
 * `set.forEach(f)`
-is easiest to explain with code. It’s like shorthand for:
+This method is analogous to the .forEach() method on arrays and is easiest to explain with code. It’s like shorthand for:
 ```javascript
 for (let value of set)
     f(value, value, set);
 ```
-This method is analogous to the .forEach() method on arrays.
 
 * `set.keys()`, `set.values()`, `set.entries()`
 return various iterators. These are provided for compatibility with Map, so we’ll talk about them below.
@@ -114,6 +111,90 @@ let intersect = new Set([...a].filter(x => b.has(x))); //=> set {2, 3}
 
 // difference
 let difference = new Set([...a].filter(x => !b.has(x))); //=> Set {1}
+```
+
+## Map
+A Map is a collection of key-value pairs. Here are all the operations on Maps:
+* `new Map`
+returns a new, empty map.
+
+* `new Map(pairs)`
+creates a new map and fills it with data from an existing collection of `[key, value]` pairs. 
+pairs can be an existing Map object, an array of two-element arrays, a generator that yields two-element arrays, etc.
+```javascript
+//Use the regular Map constructor to transform a 2D key-value Array into a map
+let map = new Map([['name', '张三'], ['title', 'Author']]);
+```
+
+* `map.size`
+gets the number of entries in the map.
+
+* `map.has(key)`
+tests whether a key is present (like `key in obj`).
+
+* `map.get(key)`
+gets the value associated with a key, or undefined if there is no such entry (like `obj[key]`).
+
+* `map.set(key, value)`
+adds an entry to the map associating key with value, overwriting any existing entry with the same key (like `obj[key] = value`).
+
+* `map.delete(key)`
+deletes an entry (like `delete obj[key]`).
+
+* `map.clear()`
+removes all entries from the map.
+
+* `map[Symbol.iterator]()`
+returns an iterator over the entries in the map. The iterator represents each entry as a new `[key, value]` array.
+
+* `map.forEach(f)`
+works like this:
+```javascript
+for (let [key, value] of map)
+  f(value, key, map);
+```
+
+* `map.keys()`
+returns an iterator over all the keys in the map.
+* `map.values()`
+returns an iterator over all the values in the map.
+* `map.entries()`
+returns an iterator over all the entries in the map, just like `map[Symbol.iterator]()`. In fact, it’s just another name for the same method.
+
+
+Relation with Array objects
+
+* transform between array and map
+```javascript
+//array to map
+var kvArray = [["key1", "value1"], ["key2", "value2"]];
+var myMap = new Map(kvArray); //=>Map {"key1" => "value1", "key2" => "value2"}
+
+//map to array
+console.log([...myMap]); //=> [["key1", "value1"], ["key2", "value2"]]
+```
+* transform between object and map
+```javascript
+//object to map
+function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+objToStrMap({yes: true, no: false}) //=> [ [ 'yes', true ], [ 'no', false ] ]
+
+//map to object
+function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+let myMap = new Map().set('yes', true).set('no', false);
+strMapToObj(myMap) //=> { yes: true, no: false }
 ```
 # Additional resources
 
