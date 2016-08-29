@@ -197,7 +197,7 @@ let myMap = new Map().set('yes', true).set('no', false);
 strMapToObj(myMap) //=> { yes: true, no: false }
 ```
 
-> It should be noted that elements in map and set can be iterated with the order of their insertion.
+> **It should be noted that elements in map and set can be iterated with the order of their insertion**.
 
 # Additional resources
 
