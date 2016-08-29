@@ -91,6 +91,30 @@ As nice as Set is, there are some missing methods that would make nice additions
 
 The good news is that all of these can be implemented efficiently using the methods provided by ES6.
 
+* Implement map,filter
+```javascript
+//implement  map
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(x => x * 2));
+
+//implement filter
+let set = new Set([1, 2, 3, 4, 5]);
+set = new Set([...set].filter(x => (x % 2) == 0)); 
+```
+* Implement union、intersect 、difference 
+```javascript
+let a = new Set([1, 2, 3]);
+let b = new Set([4, 3, 2]);
+
+// union
+let union = new Set([...a, ...b]); //=> Set {1, 2, 3, 4}
+
+// intersect
+let intersect = new Set([...a].filter(x => b.has(x))); //=> set {2, 3}
+
+// difference
+let difference = new Set([...a].filter(x => !b.has(x))); //=> Set {1}
+```
 # Additional resources
 
 >[MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
