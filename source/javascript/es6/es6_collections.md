@@ -232,12 +232,12 @@ When myElement is removed from the document and dropped,the myElement stored in 
 
 # Additional resources
 
->[MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+>[MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
->[Understandinges6#Symbols and Symbol Properties](https://leanpub.com/understandinges6/read#leanpub-auto-symbols-and-symbol-properties)
+>[MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
->[Es6.ruanyifeng#Symbol](http://es6.ruanyifeng.com/#docs/symbol)
+>[Es6.ruanyifeng#set-map](http://es6.ruanyifeng.com/#docs/set-map)
 
->[Exploring ES6#Symbols](http://exploringjs.com/es6/ch_symbols.html)
+>[Exploring ES6#maps-sets](http://exploringjs.com/es6/ch_maps-sets.html#_when-should-i-use-a-map-when-an-object)
 
->[MDN #es6-in-depth-symbols](https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/)
+>[Es6-in-depth-collections](https://hacks.mozilla.org/2015/06/es6-in-depth-collections/)
