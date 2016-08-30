@@ -197,7 +197,38 @@ let myMap = new Map().set('yes', true).set('no', false);
 strMapToObj(myMap) //=> { yes: true, no: false }
 ```
 
-> **It should be noted that elements in map and set can be iterated with the order of their insertion**.
+**It should be noted that elements in map and set can be iterated with the order of their insertion**.
+
+
+## WeakMap and WeakSet
+WeakMap and WeakSet are specified to behave exactly like Map and Set, but with a few restrictions:
+
+* WeakMap supports **only** `new`, `has()`, `get()`, `set()`, and `delete()`.
+* WeakSet supports **only** `new`, `has()`, `add()`, and `delete()`.
+* The values stored in a WeakSet and the keys stored in a WeakMap must be objects.
+
+
+Unlike set and map ,the values in a WeakSet and keys in map are weak reference
+it means,a WeakSet does not keep a strong reference to the objects it contains. 
+When an object in a WeakSet is collected, it is simply removed from the WeakSet. WeakMap is similar. 
+It does not keep a strong reference to any of its keys. If a key is alive, the associated value is alive. 
+it is possible to solve this particular problem of `memory leaks` using either a weak collection.
+```javascript
+let myElement = document.getElementById('logo');
+let myWeakmap = new WeakMap();
+
+myWeakmap.set(myElement, {timesClicked: 0});
+
+myElement.addEventListener('click', function() {
+  let logoData = myWeakmap.get(myElement);
+  logoData.timesClicked++;
+  myWeakmap.set(myElement, logoData);
+}, false);
+```
+When myElement is removed from the document and dropped,the myElement stored in myWeakmap will be removed automatically.
+
+
+**Note that neither type of weak collection is iterable**. You can’t get entries out of a weak collection except by asking for them specifically, passing in the key you’re interested in.
 
 # Additional resources
 
