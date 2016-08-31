@@ -338,12 +338,10 @@ twoLoops(new PreventReturn(elements()));
 
 # Additional resources
 
->[MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+>[MDN iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable)
 
->[MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+>[Es6.ruanyifeng#iterator](http://es6.ruanyifeng.com/#docs/iterator)
 
->[Es6.ruanyifeng#set-map](http://es6.ruanyifeng.com/#docs/set-map)
+>[Exploring ES6#iteration](http://exploringjs.com/es6/ch_iteration.html)
 
->[Exploring ES6#maps-sets](http://exploringjs.com/es6/ch_maps-sets.html#_when-should-i-use-a-map-when-an-object)
-
->[Es6-in-depth-collections](https://hacks.mozilla.org/2015/06/es6-in-depth-collections/)
+>[Es6-in-depth-iterators-and-the-for-of](https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/)
