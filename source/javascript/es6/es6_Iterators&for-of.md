@@ -150,6 +150,7 @@ Promise.race(iterableOverPromises).then(···);
 ```
 
 * yield*
+
 yield* is an operator that is only available inside generators. It yields all items iterated over by an iterable.
 ```javascript
 function* yieldAllValuesOf(iterable) {
