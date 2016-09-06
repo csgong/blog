@@ -60,17 +60,17 @@ and that’s why the `.value` field of the result is undefined.
 ## Kinds of generators
 There are four kinds of generators:
 
-1. Generator function declarations:
+* 1.Generator function declarations:
 ```javascript
 function* genFunc() { ··· }
 const genObj = genFunc();
 ```
-2. Generator function expressions:
+*  2.Generator function expressions:
 ```javascript
 const genFunc = function* () { ··· };
 const genObj = genFunc();
 ```
-3. Generator method definitions in object literals:
+*  3.Generator method definitions in object literals:
 ```javascript
 const obj = {
      *generatorMethod() {
@@ -79,7 +79,7 @@ const obj = {
  };
 const genObj = obj.generatorMethod();
 ```
-4. Generator method definitions in class definitions (class declarations or class expressions)
+*  4.Generator method definitions in class definitions (class declarations or class expressions)
 ```javascript
 class MyClass {
      *generatorMethod() {
