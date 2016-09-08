@@ -57,6 +57,137 @@ On the last `iter.next()` call, we finally reached the end of the generator-func
 so the `.done` field of the result is true. Reaching the end of a function is just like returning undefined, 
 and that’s why the `.value` field of the result is undefined.
 
+The previous generator function did not contain an explicit `return`. An implicit `return` is equivalent to returning undefined. Let’s examine a generator with an explicit `return`:
+
+```javascript
+function* genFuncWithReturn() {
+    yield 'a';
+    yield 'b';
+    return 'result';
+}
+```
+The returned value shows up in the last object returned by `next()`, whose property `done` is true:
+
+```javascript
+const genObjWithReturn = genFuncWithReturn();
+genObjWithReturn.next(); //=>{ value: 'a', done: false }
+genObjWithReturn.next(); //=>{ value: 'b', done: false }
+genObjWithReturn.next(); //=>{ value: 'result', done: true }
+```
+However, most constructs that work with iterables ignore the value inside the done object:
+
+```javascript
+for (const x of genFuncWithReturn()) {
+    console.log(x); //=> a,b
+}
+const arr = [...genFuncWithReturn()]; //=>  ['a', 'b']
+```
+
+If an exception leaves the body of a generator then `next()` throws it:
+
+```javascript
+function* genFunc() {
+    throw new Error('Problem!');
+}
+const genObj = genFunc();
+genObj.next(); //=> Error: Problem!
+```
+
+## Warning about yield
+
+* You can only `yield` in generators, that is, yielding in callbacks doesn’t work.
+
+```javascript
+function* genFunc() {
+    ['a', 'b'].forEach(x => yield x); //=> SyntaxError
+}
+```
+
+* You have to put yield in parentheses if you want to use it as an operand.
+ 
+ For example, you get a SyntaxError if you make an unparenthesized yield an operand of plus:
+
+```javascript
+console.log('Hello' + yield); // SyntaxError
+console.log('Hello' + yield 123); // SyntaxError
+
+console.log('Hello' + (yield)); // OK
+console.log('Hello' + (yield 123)); // OK
+```
+
+## Sending values via `next()`
+
+When you execute a generator,you can send values to it via next() and it receives those values via yield:
+```javascript
+function* dataConsumer() {
+    console.log('Started');
+    let input = yield 1;
+    console.log(`1.${input}`);
+    let input2 = yield 2;
+    console.log(`2.${input2}`);
+    return 'result';
+}
+```
+Let’s use this generator interactively. First, we create a generator object:
+```javascript
+> const genObj = dataConsumer();
+```
+We now call `genObj.next()`, which starts the generator. Execution continues until the first yield,The result of `next()` is the value yielded in line `let input = yield 1;`
+
+```javascript
+> genObj.next();
+//Started
+//=> { value: 1, done: false }
+```
+We call `next()` two more times, in order to send the value 'a' to the first yield and the value 'b' to the second yield:
+```javascript
+> genObj.next('a');
+1.a
+//=>{ value: 2, done: false }
+
+> genObj.next('b');
+2.b
+//=>{ value: 'result', done: true }
+```
+The result of the last `next()` is the value returned from `dataConsumer().done` being true indicates that the generator is finished.
+
+**In a word,`next()` always sends a value to the currently suspended yield, but returns the operand of the following yield**.
+
+It is important to note that the only purpose of the first invocation of `next()` is to start the observer. 
+It is only ready for input afterwards, because this first invocation advances execution to the first yield. 
+Therefore, any input you send via the first `next()` is ignored:
+The following utility function fixes this issue:
+```javascript
+function coroutine(generatorFunction) {
+    return function (...args) {
+        const generatorObject = generatorFunction(...args);
+        generatorObject.next();
+        return generatorObject;
+    };
+}
+```
+
+## return(),throw()
+Generator objects have two additional methods, return() and throw(), that are similar to next().
+```javascript
+function* dataConsumer() {
+    console.log('Started');
+    let input = yield 1;
+    console.log(`1. ${input}`);
+    let input2 = yield 2;
+    console.log(`1. ${input2}`);
+    return 'result';
+}
+```
+Let’s recap how `next(x)` works (after the first invocation):
+
+* The generator is currently suspended at a yield operator.
+* Send the value x to that yield, which means that it evaluates to x.
+* Proceed to the next yield, return or throw:
+    - `yield x` leads to `next()` returning with `{ value: x, done: false }`
+    - `return x` leads to `next()` returning with `{ value: x, done: true }`
+    - `throw err` (not caught inside the generator) leads to `next()` throwing err.
+
 ## Kinds of generators
 There are four kinds of generators:
 
@@ -90,6 +221,10 @@ const myInst = new MyClass();
 const genObj = myInst.generatorMethod();
 ```
 
+## return()
+
+
+
 
 ## Generators as iterators
 
@@ -117,31 +252,6 @@ const [x, y,z] = genNum();
 console.log(x,y,z); //=> 1 2 3
 ```
 
-The previous generator function did not contain an explicit `return`. An implicit `return` is equivalent to returning undefined. Let’s examine a generator with an explicit `return`:
-
-```javascript
-function* genFuncWithReturn() {
-    yield 'a';
-    yield 'b';
-    return 'result';
-}
-```
-The returned value shows up in the last object returned by `next()`, whose property `done` is true:
-
-```javascript
-const genObjWithReturn = genFuncWithReturn();
-genObjWithReturn.next(); //=>{ value: 'a', done: false }
-genObjWithReturn.next(); //=>{ value: 'b', done: false }
-genObjWithReturn.next(); //=>{ value: 'result', done: true }
-```
-However, most constructs that work with iterables ignore the value inside the done object:
-
-```javascript
-for (const x of genFuncWithReturn()) {
-    console.log(x); //=> a,b
-}
-const arr = [...genFuncWithReturn()]; //=>  ['a', 'b']
-```
 Let’s look at an example that demonstrates how convenient and astonshingly generators are for implementing iterables.
 
 ```javascript
@@ -184,6 +294,78 @@ function objectEntries(obj) {
     };
 }
 ```
+How else can we use the ability of generators to act as iterators?
+
+* Making any object iterable.
+
+Just write a generator-function that traverses this, yielding each value as it goes. 
+Then install that generator-function as the [Symbol.iterator] method of the object.
+
+* Simplifying array-building functions.
+
+Suppose you have a function that returns an array of results each time it’s called, like this one:
+```javascript
+// Divide the one-dimensional array 'icons'
+// into arrays of length 'rowLength'.
+function splitIntoRows(icons, rowLength) {
+  var rows = [];
+  for (var i = 0; i < icons.length; i += rowLength) {
+    rows.push(icons.slice(i, i + rowLength));
+  }
+  return rows;
+}
+```
+Generators make this kind of code a bit shorter:
+```javascript
+function* splitIntoRows(icons, rowLength) {
+  for (var i = 0; i < icons.length; i += rowLength) {
+    yield icons.slice(i, i + rowLength);
+  }
+}
+```
+The only difference in behavior is that instead of computing all the results at once and returning an array of them, 
+this returns an iterator, and the results are computed one by one, on demand.
+
+* Results of unusual size.
+
+You can’t build an infinite array. But you can return a generator that generates an endless sequence, 
+and each caller can draw from it however many values they need.
+
+* Refactoring complex loops.
+
+Do you have a huge ugly function? Would you like to break it into two simpler parts? Generators are a new knife to add to your refactoring toolkit. 
+When you’re facing a complicated loop, you can factor out the part of the code that produces data, turning it into a separate generator-function. 
+Then change the loop to say for (var data of myNewGenerator(args)).
+
+* Tools for working with iterables.
+
+ES6 does not provide an extensive library for filtering, mapping, and generally hacking on arbitrary iterable data sets. 
+But generators are great for building the tools you need with just a few lines of code.
+
+For example, suppose you need an equivalent of Array.prototype.filter that works on DOM NodeLists, not just Arrays. Piece of cake:
+
+```javascript
+function* filter(test, iterable) {
+  for (var item of iterable) {
+    if (test(item))
+      yield item;
+  }
+}
+```
+
+
+
+
+
+
+
+2. yield*
+3. return()
+4. throw()
+5. finally  in generator  and return 
+6. Eliminate first next() call
+7. Simplifying asynchronous computations via generators
+8. 
 ```javascript
 ```
 # Additional resources
