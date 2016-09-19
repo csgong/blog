@@ -484,7 +484,7 @@ function Q(genFunc) {
 
 Q(function* () {
     try {
-        const data = $.ajax( "example.html" );
+        const data = yield $.ajax( "example.html" );
         console.log(data);
     } catch (e) {
         console.log('Failure to read: ' + e);
