@@ -18,3 +18,7 @@
 
 ##  9. [深入浅出Node.js ](http://product.china-pub.com/3768858)
 
+##  10. [You Don't Know JS (book series) online](https://github.com/getify/You-Dont-Know-JS/blob/master/README.md#you-dont-know-js-book-series)
+
+
+
