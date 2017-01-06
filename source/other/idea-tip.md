@@ -22,6 +22,10 @@ You can set a number which is suitable for you.
 ### 5. Prevent opening last projects when intellij idea start
 Settings -> Appearance & Behaviour -> System Settings -> Reopen last project on startup
 
+### 6. Support ES6
+File>settings>Lauguages & Frameworks>javascript
+change `javascript languages` version to `ECMAScript 6`。
+
 ## Hot keys
 
 All hot keys are defined on the keymaps of Eclipse which you can set it by **`Settings->Keymap`**.
