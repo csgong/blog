@@ -6,7 +6,7 @@ png图片压缩，是pngquant的node 版本
 ## [athena](https://github.com/o2team/athena)
 京东前端构建框架，有很多值得借鉴的东西
 
-## []postcss-sprites](https://github.com/2createStudio/postcss-sprites)
+## [postcss-sprites](https://github.com/2createStudio/postcss-sprites)
 Generate sprites from stylesheets.
 
 ## Jest
