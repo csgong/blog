@@ -1,5 +1,5 @@
 # Todo list
-## Jest
+## [Jest](http://facebook.github.io/jest/)
 Jest is a JavaScript testing framework, 
 used by Facebook to test all JavaScript code including React applications.
 

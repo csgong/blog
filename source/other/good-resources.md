@@ -9,6 +9,6 @@ png图片压缩，是pngquant的node 版本
 ## [postcss-sprites](https://github.com/2createStudio/postcss-sprites)
 Generate sprites from stylesheets.
 
-## Jest
+## [Jest](http://facebook.github.io/jest/)
 Jest is a JavaScript testing framework, 
 used by Facebook to test all JavaScript code including React applications.
