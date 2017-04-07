@@ -52,3 +52,16 @@ will
 
 Finding all places where a particular class, method or variable is used in the whole project,
 it gives you a nice popup with good interaction.
+
+### 5. Ctrl + Shift + Enter
+
+Use `Ctrl+Shift+Enter` to complete a current statement such as if, do-while, try-catch, return (or a method call) into a syntactically correct construct (e.g. add curly braces).
+
+### 6. Ctrl + Space
+
+Use `Ctrl + Space` to insert smartly.
+
+### 7. Ctrl + Shift + Space
+
+Use `Ctrl + Shift + Space` to open document popup.
+
