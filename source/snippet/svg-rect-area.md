@@ -1,9 +1,9 @@
 
-# DESCRIPTION
+### DESCRIPTION
 
 SVG的rect选择框的坐标计算
 
-# CODE SNIPPET
+### SNIPPET
 
 ```javascript
 function calculatePoint(sx, sy, ex, ey) {
