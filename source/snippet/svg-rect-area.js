@@ -1,11 +1,11 @@
-
-### DESCRIPTION
-
-SVG的rect选择框的坐标计算
-
-### SNIPPET
-
-```javascript
+/**
+ * SVG的rect选择框的坐标计算
+ * @param sx 起始坐标x
+ * @param sy 起始坐标y
+ * @param ex 结束坐标x
+ * @param ey 结束坐标y
+ * @returns {{x, y, width, height}|*}  用于绘制Rect的坐标信息
+ */
 function calculatePoint(sx, sy, ex, ey) {
 
     function getArea(x, y, width, height) {
@@ -29,4 +29,3 @@ function calculatePoint(sx, sy, ex, ey) {
     }
     return getArea();
 }
-```
