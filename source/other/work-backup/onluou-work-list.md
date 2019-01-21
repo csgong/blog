@@ -19,6 +19,15 @@ Label should set "for" attribute for input.
 ## 4. IE doesn't support to generate a date using `new Date("")` format. eg. new Date("2015/1/1")
 For IE,you can use `new Date(2015,1,1)` or date.setUTCFullYear(2105,1,1) and date.setUTCHours(0, 0, 0, 0) as same; 
 
-## 5. Fires the input event when a input field with placeholder
-Bind event before setting placeholder.
+## 5."Input" event get fired when setting/unsetting the placeholder in IE(10~11)
+Any of the actions below can cause the problem
+* 1. Focus the input element 
+* 2. Setting/unsetting the placeholder property
+* 3. Generating the input element dynamically with placeholder property and binding 'input' event
+For  action 1 and 3,you can bind event on nextTick eg:
+```javascript
+setTimeout(function () {
+  element.addEventListener('input',handler)
+}, 0);
+```
                                            
