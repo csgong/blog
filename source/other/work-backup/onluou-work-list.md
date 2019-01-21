@@ -24,6 +24,7 @@ Any of the actions below can cause the problem
 * 1. Focus the input element 
 * 2. Setting/unsetting the placeholder property
 * 3. Generating the input element dynamically with placeholder property and binding 'input' event
+
 For  action 1 and 3,you can bind event on nextTick eg:
 ```javascript
 setTimeout(function () {
