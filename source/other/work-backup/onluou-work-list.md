@@ -18,4 +18,7 @@ Label should set "for" attribute for input.
 
 ## 4. IE doesn't support to generate a date using `new Date("")` format. eg. new Date("2015/1/1")
 For IE,you can use `new Date(2015,1,1)` or date.setUTCFullYear(2105,1,1) and date.setUTCHours(0, 0, 0, 0) as same; 
+
+## 5. Fires the input event when a input field with placeholder
+Bind event after setting placeholder.
                                            
